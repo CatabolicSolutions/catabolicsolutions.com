@@ -1,0 +1,855 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Catabolic Solutions</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--navy:#0f1b2d;--navy-mid:#1a2b45;--slate:#2c3e5a;--sky:#3b82f6;--sky-dark:#2563eb;--teal:#14b8a6;--white:#ffffff;--off-white:#f8fafc;--gray-100:#f1f5f9;--gray-200:#e2e8f0;--gray-300:#cbd5e1;--gray-500:#64748b;--gray-700:#334155;--gray-900:#0f172a;--font-sans:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;--font-display:'Playfair Display',Georgia,serif;--max-w:1140px;--radius:8px;--shadow-sm:0 1px 3px rgba(0,0,0,.08);--shadow-md:0 4px 16px rgba(0,0,0,.10);--shadow-lg:0 8px 30px rgba(0,0,0,.12);--transition:.25s ease}
+html{scroll-behavior:smooth}
+body{font-family:var(--font-sans);color:var(--gray-700);line-height:1.7;background:var(--white)}
+img{max-width:100%;display:block}
+a{color:var(--sky-dark);text-decoration:none;transition:color var(--transition)}
+a:hover{color:var(--teal)}
+h1,h2,h3,h4{font-family:var(--font-display);color:var(--navy);line-height:1.25;font-weight:700}
+h1{font-size:clamp(2rem,5vw,3.25rem)}
+h2{font-size:clamp(1.6rem,3.5vw,2.4rem)}
+h3{font-size:1.35rem}
+h4{font-size:1.1rem}
+p+p{margin-top:1rem}
+.container{width:90%;max-width:var(--max-w);margin:0 auto}
+.section{padding:5rem 0}
+.section--alt{background:var(--off-white)}
+
+/* Header */
+.site-header{position:sticky;top:0;z-index:100;background:rgba(15,27,45,.97);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);height:72px;display:flex;align-items:center}
+.header-inner{display:flex;align-items:center;justify-content:space-between;width:90%;max-width:var(--max-w);margin:0 auto}
+.logo{font-family:var(--font-display);font-size:1.35rem;font-weight:700;color:var(--white);cursor:pointer}
+.logo span{color:var(--teal)}
+.nav-desktop{display:flex;gap:1.75rem;list-style:none}
+.nav-desktop a{color:var(--gray-300);font-size:.9rem;font-weight:500;padding:.35rem 0;border-bottom:2px solid transparent;transition:color var(--transition),border-color var(--transition)}
+.nav-desktop a:hover{color:var(--white)}
+.nav-desktop a.active{color:var(--white);border-bottom-color:var(--teal)}
+.hamburger{display:none;background:none;border:none;color:var(--white);font-size:1.6rem;cursor:pointer;padding:.25rem}
+.mobile-nav{display:none;position:fixed;top:72px;left:0;right:0;bottom:0;background:rgba(15,27,45,.98);z-index:99;flex-direction:column;padding:2rem;gap:.5rem}
+.mobile-nav.open{display:flex}
+.mobile-nav a{color:var(--gray-300);font-size:1.1rem;font-weight:500;padding:.75rem 0;border-bottom:1px solid rgba(255,255,255,.06);transition:color var(--transition)}
+.mobile-nav a:hover,.mobile-nav a.active{color:var(--white)}
+
+/* Hero */
+.hero{background:linear-gradient(165deg,#0f1b2d 0%,#1a2b45 60%,#2c3e5a 100%);padding:6rem 0 5rem;text-align:center;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 80% 20%,rgba(59,130,246,.12) 0%,transparent 60%);pointer-events:none}
+.hero .container{position:relative;z-index:1}
+.hero h1{color:var(--white);margin-bottom:1.25rem}
+.hero p{color:var(--gray-300);font-size:1.15rem;max-width:720px;margin:0 auto 2rem}
+.hero--short{padding:4rem 0 3.5rem}
+
+/* Buttons */
+.btn--primary{display:inline-block;background:var(--sky);color:var(--white);font-weight:600;padding:.75rem 1.75rem;border-radius:var(--radius);border:none;font-size:.95rem;cursor:pointer;transition:background var(--transition),transform var(--transition),box-shadow var(--transition);font-family:var(--font-sans)}
+.btn--primary:hover{background:var(--sky-dark);transform:translateY(-1px);box-shadow:var(--shadow-md);color:var(--white)}
+.btn--outline{display:inline-block;background:transparent;color:var(--gray-300);font-weight:600;padding:.75rem 1.75rem;border-radius:var(--radius);border:2px solid var(--gray-300);font-size:.95rem;cursor:pointer;transition:border-color var(--transition),color var(--transition),transform var(--transition);font-family:var(--font-sans)}
+.btn--outline:hover{border-color:var(--white);color:var(--white);transform:translateY(-1px)}
+.hero-buttons{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+
+/* Section header */
+.section-header{text-align:center;max-width:680px;margin:0 auto 3rem}
+.section-header p{color:var(--gray-500);margin-top:.75rem;font-size:1.05rem}
+
+/* Cards grid */
+.card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:2rem}
+.card-grid--2{grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
+.card{background:var(--white);border:1px solid var(--gray-200);border-radius:var(--radius);padding:2rem;transition:box-shadow var(--transition),transform var(--transition)}
+.card:hover{box-shadow:var(--shadow-md);transform:translateY(-3px)}
+.card-icon{width:40px;height:40px;display:flex;align-items:center;justify-content:center;margin-bottom:1rem}
+.card-icon svg{width:40px;height:40px}
+.card h3{margin-bottom:.75rem}
+.card p{color:var(--gray-500);font-size:.95rem}
+.card ul{margin-top:1rem;padding-left:1.25rem;color:var(--gray-500);font-size:.93rem}
+.card ul li{margin-bottom:.35rem}
+
+/* Steps timeline */
+.steps{max-width:700px;margin:0 auto;counter-reset:step-counter;position:relative}
+.step{position:relative;padding-left:4.5rem;padding-bottom:2.5rem;border-left:2px solid var(--gray-200);margin-left:1rem}
+.step:last-child{border-left-color:transparent;padding-bottom:0}
+.step::before{counter-increment:step-counter;content:counter(step-counter);position:absolute;left:-1rem;top:0;width:2rem;height:2rem;background:var(--sky);color:var(--white);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.85rem;font-weight:700;font-family:var(--font-sans);line-height:1}
+.step h3{margin-bottom:.5rem;color:var(--navy)}
+.step p{color:var(--gray-500);font-size:.95rem}
+
+/* CTA Banner */
+.cta-banner{background:linear-gradient(135deg,var(--navy) 0%,var(--slate) 100%);color:var(--white);padding:4rem 2rem;text-align:center}
+.cta-banner h2{color:var(--white);margin-bottom:.75rem}
+.cta-banner p{color:var(--gray-300);margin-bottom:1.75rem;font-size:1.05rem;max-width:600px;margin-left:auto;margin-right:auto}
+
+/* Case study cards */
+.case-card{background:var(--white);border:1px solid var(--gray-200);border-radius:var(--radius);padding:2rem;transition:box-shadow var(--transition),transform var(--transition)}
+.case-card:hover{box-shadow:var(--shadow-md);transform:translateY(-3px)}
+.badge{display:inline-block;background:var(--sky);color:var(--white);font-size:.72rem;font-weight:600;text-transform:uppercase;letter-spacing:.04em;padding:.3rem .75rem;border-radius:100px;margin-bottom:1rem}
+.case-card h3{margin-bottom:.75rem}
+.case-card>p{color:var(--gray-500);font-size:.95rem}
+.stats-row{display:flex;border-top:1px solid var(--gray-200);margin-top:1.5rem;padding-top:1.25rem;gap:1rem}
+.stat{flex:1;text-align:center}
+.stat-value{font-family:var(--font-display);font-size:1.3rem;color:var(--navy);font-weight:700}
+.stat-label{font-size:.78rem;color:var(--gray-500);margin-top:.2rem}
+
+/* Contact form */
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start}
+.contact-info h3{margin-bottom:.75rem}
+.contact-info p{color:var(--gray-500);font-size:.95rem}
+.contact-info ul{list-style:none;margin:1.5rem 0}
+.contact-info ul li{padding:.5rem 0;color:var(--gray-500);font-size:.95rem;display:flex;gap:.5rem}
+.contact-info ul li strong{color:var(--navy);min-width:90px}
+.what-expect{margin-top:2rem}
+.what-expect ol{padding-left:1.25rem;color:var(--gray-500);font-size:.95rem;margin-top:.75rem}
+.what-expect ol li{margin-bottom:.5rem}
+.form-group{margin-bottom:1.25rem}
+.form-group label{display:block;font-weight:600;font-size:.9rem;color:var(--navy);margin-bottom:.4rem}
+.form-group input,.form-group select,.form-group textarea{width:100%;padding:.7rem .9rem;border:1px solid var(--gray-200);border-radius:var(--radius);font-family:var(--font-sans);font-size:.95rem;color:var(--gray-700);background:var(--white);transition:border-color var(--transition)}
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus{outline:none;border-color:var(--sky)}
+.form-group textarea{min-height:120px;resize:vertical}
+.form-success{display:none;background:rgba(20,184,166,.08);border:1px solid var(--teal);border-radius:var(--radius);padding:1.25rem;color:var(--teal);font-weight:600;text-align:center;margin-top:1rem}
+.form-success.show{display:block}
+
+/* Blog cards */
+.blog-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:2rem}
+.blog-card{background:var(--white);border:1px solid var(--gray-200);border-radius:var(--radius);padding:1.75rem;transition:box-shadow var(--transition),transform var(--transition)}
+.blog-card:hover{box-shadow:var(--shadow-md);transform:translateY(-3px)}
+.blog-card .date{font-size:.82rem;color:var(--gray-500);margin-bottom:.6rem}
+.blog-card h3{margin-bottom:.6rem;font-size:1.2rem}
+.blog-card h3 a{color:var(--navy);transition:color var(--transition)}
+.blog-card h3 a:hover{color:var(--sky-dark)}
+.blog-card p{color:var(--gray-500);font-size:.93rem;margin-bottom:1rem}
+.blog-card .read-more{font-size:.9rem;font-weight:600;color:var(--sky-dark)}
+.blog-card .read-more:hover{color:var(--teal)}
+
+/* Blog post */
+.blog-post{max-width:740px;margin:0 auto;padding:3rem 0 4rem}
+.blog-post .back-link{display:inline-block;margin-bottom:1.5rem;font-size:.9rem;font-weight:500;color:var(--sky-dark)}
+.blog-post .back-link:hover{color:var(--teal)}
+.blog-post .post-date{font-size:.88rem;color:var(--gray-500);margin-bottom:.75rem}
+.blog-post h1{margin-bottom:1.75rem;font-size:clamp(1.75rem,4vw,2.5rem)}
+.blog-post h2{margin-top:2.25rem;margin-bottom:.75rem;font-size:clamp(1.3rem,3vw,1.7rem)}
+.blog-post p{color:var(--gray-700);font-size:1.02rem;line-height:1.8}
+.blog-post ul{padding-left:1.5rem;margin:.75rem 0;color:var(--gray-700);font-size:1rem;line-height:1.8}
+.blog-post ul li{margin-bottom:.35rem}
+.blog-post ol{padding-left:1.5rem;margin:.75rem 0;color:var(--gray-700);font-size:1rem;line-height:1.8}
+.blog-post ol li{margin-bottom:.35rem}
+.blog-post blockquote{border-left:3px solid var(--teal);padding:.75rem 1.25rem;background:var(--off-white);border-radius:0 var(--radius) var(--radius) 0;margin:1.5rem 0;color:var(--gray-500);font-style:italic;font-size:1rem;line-height:1.7}
+
+/* Footer */
+.site-footer{background:var(--navy);color:var(--gray-300);padding:3rem 0 2rem}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:2.5rem}
+.footer-about .logo{margin-bottom:.75rem;display:inline-block}
+.footer-about p{font-size:.9rem;color:var(--gray-300);line-height:1.6;max-width:340px}
+.site-footer h4{color:var(--white);font-size:1rem;margin-bottom:1rem;font-family:var(--font-sans);font-weight:600}
+.footer-links{list-style:none}
+.footer-links li{margin-bottom:.5rem}
+.footer-links a{color:var(--gray-300);font-size:.9rem;transition:color var(--transition)}
+.footer-links a:hover{color:var(--teal)}
+.footer-contact p{font-size:.9rem;margin-bottom:.35rem}
+.footer-contact a{color:var(--gray-300)}
+.footer-contact a:hover{color:var(--teal)}
+.footer-bottom{border-top:1px solid rgba(255,255,255,.08);margin-top:2.5rem;padding-top:1.5rem;display:flex;justify-content:space-between;align-items:center;font-size:.82rem;color:var(--gray-500)}
+
+/* Responsive */
+@media(max-width:768px){
+  .nav-desktop{display:none}
+  .hamburger{display:block}
+  .hero{padding:4rem 0 3.5rem}
+  .hero p{font-size:1rem}
+  .section{padding:3rem 0}
+  .card-grid,.card-grid--2{grid-template-columns:1fr}
+  .blog-grid{grid-template-columns:1fr}
+  .contact-grid{grid-template-columns:1fr}
+  .footer-grid{grid-template-columns:1fr}
+  .footer-bottom{flex-direction:column;gap:.5rem;text-align:center}
+  .stats-row{flex-direction:column;gap:.75rem}
+  .stat{text-align:left;display:flex;gap:.5rem;align-items:baseline}
+  .hero-buttons{flex-direction:column;align-items:center}
+  .blog-post{padding:2rem 0 3rem}
+}
+@media(min-width:769px)and(max-width:1024px){
+  .card-grid{grid-template-columns:repeat(2,1fr)}
+}
+</style>
+</head>
+<body>
+<!-- HEADER -->
+<header class="site-header">
+<div class="header-inner">
+<a class="logo" data-nav="home">Catabolic<span>Solutions</span></a>
+<ul class="nav-desktop" id="nav-desktop">
+<li><a href="#home" data-route="home">Home</a></li>
+<li><a href="#services" data-route="services">Services</a></li>
+<li><a href="#methodology" data-route="methodology">Methodology</a></li>
+<li><a href="#case-studies" data-route="case-studies">Case Studies</a></li>
+<li><a href="#blog" data-route="blog">Blog</a></li>
+<li><a href="#contact" data-route="contact">Contact</a></li>
+</ul>
+<button class="hamburger" id="hamburger-btn" aria-label="Open menu">&#9776;</button>
+</div>
+</header>
+
+<!-- MOBILE NAV -->
+<nav class="mobile-nav" id="mobile-nav">
+<a href="#home" data-route="home">Home</a>
+<a href="#services" data-route="services">Services</a>
+<a href="#methodology" data-route="methodology">Methodology</a>
+<a href="#case-studies" data-route="case-studies">Case Studies</a>
+<a href="#blog" data-route="blog">Blog</a>
+<a href="#contact" data-route="contact">Contact</a>
+</nav>
+
+<!-- ==================== PAGES ==================== -->
+<main id="app"></main>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+<div class="container">
+<div class="footer-grid">
+<div class="footer-about">
+<a class="logo" data-nav="home">Catabolic<span>Solutions</span></a>
+<p>We help small and mid-size businesses strip away operational complexity so they can grow faster with less overhead.</p>
+</div>
+<div>
+<h4>Navigation</h4>
+<ul class="footer-links">
+<li><a href="#home">Home</a></li>
+<li><a href="#services">Services</a></li>
+<li><a href="#methodology">Methodology</a></li>
+<li><a href="#case-studies">Case Studies</a></li>
+<li><a href="#blog">Blog</a></li>
+<li><a href="#contact">Contact</a></li>
+</ul>
+</div>
+<div class="footer-contact">
+<h4>Get in Touch</h4>
+<p>Avon, CO</p>
+<p><a href="mailto:conor_ross@catabolicsolutions.com">conor_ross@catabolicsolutions.com</a></p>
+</div>
+</div>
+<div class="footer-bottom">
+<span>&copy; 2026 Catabolic Solutions. All rights reserved.</span>
+<span>Built with strategic simplification.</span>
+</div>
+</div>
+
+</footer>
+
+<script>
+/* ===== SVG ICON DEFINITIONS ===== */
+const svgIcons = {};
+
+// 1. Process Optimization — three interconnected molecular nodes in triangle
+svgIcons.processOptimization = '<svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="20" cy="8" r="3" stroke="#14b8a6" stroke-width="1.5"/><circle cx="10" cy="28" r="3" stroke="#14b8a6" stroke-width="1.5"/><circle cx="30" cy="28" r="3" stroke="#14b8a6" stroke-width="1.5"/><path d="M17.5 10.5C15 14 12 22 12.5 25" stroke="#14b8a6" stroke-width="1.5" stroke-linecap="round"/><path d="M22.5 10.5C25 14 28 22 27.5 25" stroke="#14b8a6" stroke-width="1.5" stroke-linecap="round"/><path d="M13 29.5C16 31 24 31 27 29.5" stroke="#14b8a6" stroke-width="1.5" stroke-linecap="round"/></svg>';
+
+// 2. Intelligent Automation / Synapse — two nodes with dendrites and dashed connection
+svgIcons.synapse = '<svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="10" cy="20" r="4" stroke="#14b8a6" stroke-width="1.5"/><circle cx="30" cy="20" r="4" stroke="#14b8a6" stroke-width="1.5"/><line x1="14" y1="20" x2="26" y2="20" stroke="#14b8a6" stroke-width="1.5" stroke-dasharray="2 2"/><line x1="10" y1="16" x2="6" y2="10" stroke="#14b8a6" stroke-width="1.5" stroke-linecap="round"/><line x1="10" y1="16" x2="14" y2="10" stroke="#14b8a6" stroke-width="1.5" stroke-linecap="round"/><line x1="7" y1="22" x2="3" y2="26" stroke="#14b8a6" stroke-width="1.5" stroke-linecap="round"/><line x1="30" y1="16" x2="34" y2="10" stroke="#14b8a6" stroke-width="1.5" stroke-linecap="round"/><line x1="30" y1="16" x2="26" y2="10" stroke="#14b8a6" stroke-width="1.5" stroke-linecap="round"/><line x1="33" y1="22" x2="37" y2="26" stroke="#14b8a6" stroke-width="1.5" stroke-linecap="round"/></svg>';
+
+// 3. Technology Strategy (Home) — hexagonal molecular network
+svgIcons.hexNetwork = '<svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 5L33 12.5V27.5L20 35L7 27.5V12.5L20 5Z" stroke="#14b8a6" stroke-width="1.5" stroke-linejoin="round"/><circle cx="20" cy="5" r="2.5" stroke="#14b8a6" stroke-width="1.5"/><circle cx="33" cy="12.5" r="2.5" stroke="#14b8a6" stroke-width="1.5"/><circle cx="33" cy="27.5" r="2.5" stroke="#14b8a6" stroke-width="1.5"/><circle cx="20" cy="35" r="2.5" stroke="#14b8a6" stroke-width="1.5"/><circle cx="7" cy="27.5" r="2.5" stroke="#14b8a6" stroke-width="1.5"/><circle cx="7" cy="12.5" r="2.5" stroke="#14b8a6" stroke-width="1.5"/></svg>';
+
+// 4. Operational Audit — circular lens with crosshair and diagnostic dots
+svgIcons.auditLens = '<svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="20" cy="20" r="14" stroke="#14b8a6" stroke-width="1.5"/><line x1="20" y1="10" x2="20" y2="30" stroke="#14b8a6" stroke-width="1" stroke-opacity="0.4"/><line x1="10" y1="20" x2="30" y2="20" stroke="#14b8a6" stroke-width="1" stroke-opacity="0.4"/><circle cx="15" cy="16" r="1.5" fill="#14b8a6"/><circle cx="24" cy="14" r="1" fill="#14b8a6"/><circle cx="22" cy="23" r="1.5" fill="#14b8a6"/><circle cx="14" cy="25" r="1" fill="#14b8a6"/></svg>';
+
+// 5. Fractional Ops Leadership — organic growth curve with branch nodes
+svgIcons.growthCurve = '<svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 34C10 30 15 24 20 20C25 16 30 10 35 6" stroke="#14b8a6" stroke-width="1.5" stroke-linecap="round"/><circle cx="14" cy="26" r="2.5" stroke="#14b8a6" stroke-width="1.5"/><line x1="12" y1="24.5" x2="7" y2="19" stroke="#14b8a6" stroke-width="1.5" stroke-linecap="round"/><circle cx="22" cy="18" r="2.5" stroke="#14b8a6" stroke-width="1.5"/><line x1="24" y1="16.5" x2="28" y2="12" stroke="#14b8a6" stroke-width="1.5" stroke-linecap="round"/><circle cx="32" cy="9" r="2.5" stroke="#14b8a6" stroke-width="1.5"/><line x1="34" y1="7.5" x2="37" y2="4" stroke="#14b8a6" stroke-width="1.5" stroke-linecap="round"/></svg>';
+
+// 6. Technology Strategy Services — three converging pathways to central node
+svgIcons.converge = '<svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="20" cy="20" r="3.5" stroke="#14b8a6" stroke-width="1.5"/><line x1="5" y1="6" x2="17" y2="18" stroke="#14b8a6" stroke-width="1.5" stroke-linecap="round"/><circle cx="5" cy="6" r="2.5" stroke="#14b8a6" stroke-width="1.5"/><line x1="35" y1="6" x2="23" y2="18" stroke="#14b8a6" stroke-width="1.5" stroke-linecap="round"/><circle cx="35" cy="6" r="2.5" stroke="#14b8a6" stroke-width="1.5"/><line x1="20" y1="38" x2="20" y2="23.5" stroke="#14b8a6" stroke-width="1.5" stroke-linecap="round"/><circle cx="20" cy="38" r="2" stroke="#14b8a6" stroke-width="1.5"/></svg>';
+
+/* ===== TEMPLATES ===== */
+const ctaBanner = `
+<div class="cta-banner">
+<div class="container">
+<h2>Ready to simplify &amp; scale?</h2>
+<p>Let's identify the complexity holding your business back and build a leaner path forward.</p>
+<a href="#contact" class="btn--primary">Start a Conversation</a>
+</div>
+</div>`;
+
+const pages = {};
+
+/* HOME */
+pages['home'] = `
+<section class="hero">
+<div class="container" style="max-width:720px">
+<h1>Strip Away Complexity. Accelerate Growth.</h1>
+<p>Catabolic Solutions helps small and mid-size businesses eliminate operational bloat, automate intelligently, and build lean systems that scale.</p>
+<div class="hero-buttons">
+<a href="#services" class="btn--primary">Explore Services</a>
+<a href="#methodology" class="btn--outline">Our Methodology</a>
+</div>
+</div>
+</section>
+
+<section class="section section--alt">
+<div class="container">
+<div class="section-header">
+<h2>What We Do</h2>
+<p>We break down the processes, tools, and workflows that slow you down — then rebuild them leaner and stronger.</p>
+</div>
+<div class="card-grid">
+<div class="card">
+<div class="card-icon">${svgIcons.processOptimization}</div>
+<h3>Process Optimization</h3>
+<p>Audit your operations end-to-end, eliminate redundant steps, and design streamlined workflows that your team actually follows.</p>
+</div>
+<div class="card">
+<div class="card-icon">${svgIcons.synapse}</div>
+<h3>Intelligent Automation</h3>
+<p>Identify the highest-leverage automation opportunities and implement solutions that save hours every week without adding technical debt.</p>
+</div>
+<div class="card">
+<div class="card-icon">${svgIcons.hexNetwork}</div>
+<h3>Technology Strategy</h3>
+<p>Cut through the noise of SaaS sprawl. We help you choose, consolidate, and integrate the right tools for your stage of growth.</p>
+</div>
+</div>
+</div>
+</section>
+
+<section class="section">
+<div class="container">
+<div class="section-header">
+<h2>The Catabolic Approach</h2>
+<p>Like biological catabolism breaks complex molecules into simpler, usable energy — we break complex business operations into lean, high-performance systems.</p>
+</div>
+<div class="steps">
+<div class="step"><h3>Diagnose</h3><p>We map your current operations, tools, and team workflows to identify friction, waste, and hidden complexity.</p></div>
+<div class="step"><h3>Decompose</h3><p>Break bloated processes into their essential components. Separate signal from noise, value from overhead.</p></div>
+<div class="step"><h3>Rebuild</h3><p>Reconstruct streamlined systems using fewer tools, clearer workflows, and purposeful automation.</p></div>
+<div class="step"><h3>Sustain</h3><p>Embed continuous improvement habits so your operations stay lean as you grow, not just the week after we leave.</p></div>
+</div>
+</div>
+</section>
+${ctaBanner}`;
+
+/* SERVICES */
+pages['services'] = `
+<section class="hero hero--short">
+<div class="container" style="max-width:720px">
+<h1>Services</h1>
+<p>Targeted engagements designed to eliminate complexity and unlock growth — whether you need a quick audit or a full operational overhaul.</p>
+</div>
+</section>
+
+<section class="section">
+<div class="container">
+<div class="card-grid card-grid--2">
+<div class="card">
+<div class="card-icon">${svgIcons.auditLens}</div>
+<h3>Operational Audit</h3>
+<p>A focused 2–3 week diagnostic of your workflows, tools, and team structure. You get a prioritized action plan with quick wins and strategic recommendations.</p>
+<ul>
+<li>Process mapping &amp; bottleneck analysis</li>
+<li>Tool stack assessment</li>
+<li>Cost-of-complexity scorecard</li>
+<li>90-day action roadmap</li>
+</ul>
+</div>
+<div class="card">
+<div class="card-icon">${svgIcons.synapse}</div>
+<h3>Automation Design &amp; Implementation</h3>
+<p>We identify your highest-ROI automation opportunities and build them — from no-code Zapier flows to custom integrations and AI agent workflows.</p>
+<ul>
+<li>Workflow automation mapping</li>
+<li>Tool selection &amp; integration</li>
+<li>AI agent strategy</li>
+<li>Team training &amp; documentation</li>
+</ul>
+</div>
+<div class="card">
+<div class="card-icon">${svgIcons.growthCurve}</div>
+<h3>Fractional Operations Leadership</h3>
+<p>Embedded part-time operations leadership for businesses that need strategic guidance without a full-time hire. We become your ops partner on retainer.</p>
+<ul>
+<li>Weekly ops reviews &amp; KPI tracking</li>
+<li>Vendor &amp; tool management</li>
+<li>Team workflow coaching</li>
+<li>Quarterly strategic planning</li>
+</ul>
+</div>
+<div class="card">
+<div class="card-icon">${svgIcons.converge}</div>
+<h3>Technology Strategy</h3>
+<p>Drowning in SaaS tools? We consolidate your stack, negotiate contracts, and build an integration architecture that actually works together.</p>
+<ul>
+<li>SaaS sprawl audit &amp; consolidation</li>
+<li>Integration architecture design</li>
+<li>Build-vs-buy analysis</li>
+<li>Migration planning &amp; execution</li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+
+<section class="section section--alt">
+<div class="container">
+<div class="section-header">
+<h2>How Engagements Work</h2>
+</div>
+<div class="steps">
+<div class="step"><h3>Discovery Call</h3><p>A free 30-minute conversation to understand your challenges, goals, and whether we're the right fit.</p></div>
+<div class="step"><h3>Scoping &amp; Proposal</h3><p>We define clear deliverables, timeline, and pricing. No surprises, no billable-hour games.</p></div>
+<div class="step"><h3>Execute &amp; Deliver</h3><p>We do the work, keep you in the loop with weekly check-ins, and hand off clean documentation.</p></div>
+<div class="step"><h3>Follow-Up</h3><p>30 days after delivery, we check in to make sure everything is sticking and answer questions.</p></div>
+</div>
+</div>
+</section>
+${ctaBanner}`;
+
+/* METHODOLOGY */
+pages['methodology'] = `
+<section class="hero hero--short">
+<div class="container" style="max-width:720px">
+<h1>The Catabolic Methodology</h1>
+<p>Inspired by biological catabolism — the process of breaking complex molecules into simpler, usable energy — our methodology transforms bloated operations into lean, high-performance systems.</p>
+</div>
+</section>
+
+<section class="section">
+<div class="container">
+<div class="section-header">
+<h2>Four Phases of Transformation</h2>
+</div>
+<div class="steps">
+<div class="step"><h3>Diagnose</h3><p>We immerse ourselves in your business to understand how work actually flows — not how it's supposed to flow. Through interviews, process observation, tool audits, and data analysis, we build a complete picture of your operational landscape. The output is a Complexity Map that highlights bottlenecks, redundancies, and hidden costs.</p></div>
+<div class="step"><h3>Decompose</h3><p>With the Complexity Map in hand, we break each bloated process into its essential components. We separate value-creating activities from overhead, identify which tools are load-bearing and which are dead weight, and rank every improvement opportunity by effort and impact. This phase produces your Simplification Blueprint.</p></div>
+<div class="step"><h3>Rebuild</h3><p>We execute the Blueprint in prioritized sprints — starting with quick wins that build momentum, then tackling structural changes. This includes redesigning workflows, consolidating tools, building automations, and training your team on new systems. Every change is documented and tested before handoff.</p></div>
+<div class="step"><h3>Sustain</h3><p>Simplification isn't a one-time project — it's an operating discipline. We embed lightweight review rituals, set up dashboards for key efficiency metrics, and coach your team on spotting complexity creep before it takes root. The goal: your operations stay lean as you scale, not just the month after we leave.</p></div>
+</div>
+</div>
+</section>
+
+<section class="section section--alt">
+<div class="container">
+<div class="section-header">
+<h2>Core Principles</h2>
+</div>
+<div class="card-grid card-grid--2">
+<div class="card">
+<h3>Simplicity Is a Strategy</h3>
+<p>Complexity is the silent tax on growing businesses. Reducing it isn't just about efficiency — it's about creating the organizational capacity to pursue bigger opportunities.</p>
+</div>
+<div class="card">
+<h3>Automate Last, Simplify First</h3>
+<p>Automating a broken process just makes it break faster. We always simplify the workflow before layering on automation. The best automation is the step you eliminated entirely.</p>
+</div>
+<div class="card">
+<h3>Tools Serve Workflows, Not the Other Way Around</h3>
+<p>Too many businesses bend their processes to fit their software. We design the ideal workflow first, then select the minimum toolset to support it.</p>
+</div>
+<div class="card">
+<h3>Measure What Moves the Needle</h3>
+<p>We focus on a small set of operational KPIs that directly connect to business outcomes — not vanity metrics or dashboards nobody checks.</p>
+</div>
+</div>
+</div>
+</section>
+${ctaBanner}`;
+
+/* CASE STUDIES */
+pages['case-studies'] = `
+<section class="hero hero--short">
+<div class="container" style="max-width:720px">
+<h1>Case Studies</h1>
+<p>Illustrative examples of how strategic simplification drives measurable outcomes for businesses like yours.</p>
+</div>
+</section>
+
+<section class="section">
+<div class="container">
+<div class="card-grid" style="grid-template-columns:repeat(auto-fit,minmax(320px,1fr))">
+<div class="case-card">
+<span class="badge">SaaS · ~35 Employees</span>
+<h3>Property Management Platform Consolidation</h3>
+<p>A growing property management company was drowning in 14 disconnected SaaS tools. We consolidated to 5 core platforms, automated tenant communications, and cut their monthly tool spend by 40%.</p>
+<div class="stats-row">
+<div class="stat"><div class="stat-value">40%</div><div class="stat-label">Cost Reduction</div></div>
+<div class="stat"><div class="stat-value">14→5</div><div class="stat-label">Tool Consolidation</div></div>
+<div class="stat"><div class="stat-value">12 hrs</div><div class="stat-label">Saved per Week</div></div>
+</div>
+</div>
+<div class="case-card">
+<span class="badge">E-Commerce · ~12 Employees</span>
+<h3>Fulfillment Pipeline Redesign</h3>
+<p>An outdoor gear retailer whose fulfillment process involved 6 manual handoffs per order. We redesigned their order-to-ship pipeline with automation, cutting fulfillment time from 48 hours to 6.</p>
+<div class="stats-row">
+<div class="stat"><div class="stat-value">87%</div><div class="stat-label">Faster Fulfillment</div></div>
+<div class="stat"><div class="stat-value">6→1</div><div class="stat-label">Manual Handoffs</div></div>
+<div class="stat"><div class="stat-value">$8K</div><div class="stat-label">Monthly Savings</div></div>
+</div>
+</div>
+<div class="case-card">
+<span class="badge">Professional Services · ~22 Employees</span>
+<h3>Admin Overhead Reduction</h3>
+<p>A consulting firm spending 30% of billable hours on administrative tasks. We built automated reporting, streamlined their CRM, and freed up the equivalent of two full-time consultants.</p>
+<div class="stats-row">
+<div class="stat"><div class="stat-value">30%</div><div class="stat-label">Admin Reduction</div></div>
+<div class="stat"><div class="stat-value">2 FTE</div><div class="stat-label">Capacity Freed</div></div>
+<div class="stat"><div class="stat-value">3 mo</div><div class="stat-label">Payback Period</div></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<section class="section section--alt">
+<div class="container">
+<div class="section-header">
+<h2>Common Patterns We See</h2>
+</div>
+<div class="card-grid">
+<div class="card">
+<h3>Tool Sprawl</h3>
+<p>Every team chose their own software. Now nothing talks to anything else, and you're paying for overlapping features across a dozen subscriptions.</p>
+</div>
+<div class="card">
+<h3>Manual Data Transfer</h3>
+<p>People are copying data between systems, re-entering information, and building spreadsheets to bridge gaps that integrations should handle.</p>
+</div>
+<div class="card">
+<h3>Process Fog</h3>
+<p>Nobody can clearly explain how work moves through the organization. Tribal knowledge runs the show, and onboarding new hires takes months.</p>
+</div>
+</div>
+</div>
+</section>
+${ctaBanner}`;
+
+/* CONTACT */
+pages['contact'] = `
+<section class="hero hero--short">
+<div class="container" style="max-width:720px">
+<h1>Get in Touch</h1>
+<p>Ready to simplify your operations? Let's start with a conversation about where you are and where you want to go.</p>
+</div>
+</section>
+
+<section class="section">
+<div class="container">
+<div class="contact-grid">
+<div class="contact-info">
+<h3>Let's Talk</h3>
+<p>Whether you have a specific challenge in mind or just want to explore what strategic simplification could look like for your business, I'd love to hear from you.</p>
+<ul>
+<li><strong>Email:</strong> <a href="mailto:conor_ross@catabolicsolutions.com">conor_ross@catabolicsolutions.com</a></li>
+<li><strong>Location:</strong> Avon, Colorado</li>
+<li><strong>Response:</strong> Within 1 business day</li>
+</ul>
+<div class="what-expect">
+<h3>What to Expect</h3>
+<p>After you reach out, here's what happens next:</p>
+<ol>
+<li>I'll reply within one business day to schedule a free 30-minute discovery call.</li>
+<li>On the call, we'll discuss your current challenges, goals, and whether Catabolic Solutions is the right fit.</li>
+<li>If we decide to move forward, I'll send a clear proposal with scope, timeline, and pricing — no surprises.</li>
+</ol>
+</div>
+</div>
+<div>
+<form id="contact-form">
+<div class="form-group">
+<label for="cf-name">Name</label>
+<input type="text" id="cf-name" required placeholder="Your name">
+</div>
+<div class="form-group">
+<label for="cf-email">Email</label>
+<input type="email" id="cf-email" required placeholder="you@company.com">
+</div>
+<div class="form-group">
+<label for="cf-company">Company</label>
+<input type="text" id="cf-company" placeholder="Your company name">
+</div>
+<div class="form-group">
+<label for="cf-interest">Interest</label>
+<select id="cf-interest">
+<option value="">Select a service…</option>
+<option>Operational Audit</option>
+<option>Automation Design &amp; Implementation</option>
+<option>Fractional Operations Leadership</option>
+<option>Technology Strategy</option>
+<option>Something Else</option>
+</select>
+</div>
+<div class="form-group">
+<label for="cf-message">Message</label>
+<textarea id="cf-message" placeholder="What's the biggest operational headache in your business right now?"></textarea>
+</div>
+<button type="submit" class="btn--primary" style="width:100%">Send Message</button>
+<div class="form-success" id="form-success">Thanks! I'll be in touch within one business day.</div>
+</form>
+</div>
+</div>
+</div>
+</section>`;
+
+/* BLOG LISTING */
+pages['blog'] = `
+<section class="hero hero--short">
+<div class="container" style="max-width:720px">
+<h1>Blog</h1>
+<p>Ideas, frameworks, and field notes on strategic simplification, automation, and building lean operations.</p>
+</div>
+</section>
+
+<section class="section">
+<div class="container">
+<div class="blog-grid">
+<div class="blog-card">
+<div class="date">April 28, 2026</div>
+<h3><a href="#blog/ai-small-business-2026">AI for Small Business in 2026: What Actually Works</a></h3>
+<p>Cutting through the hype to identify the AI tools and strategies that are delivering real ROI for businesses under 50 employees.</p>
+<a href="#blog/ai-small-business-2026" class="read-more">Read more →</a>
+</div>
+<div class="blog-card">
+<div class="date">April 14, 2026</div>
+<h3><a href="#blog/strategic-simplification">Strategic Simplification: Why Less Really Is More</a></h3>
+<p>The counterintuitive case for doing fewer things, with fewer tools, and why the most successful growing companies are ruthlessly simple.</p>
+<a href="#blog/strategic-simplification" class="read-more">Read more →</a>
+</div>
+<div class="blog-card">
+<div class="date">March 31, 2026</div>
+<h3><a href="#blog/catabolic-methodology">Inside the Catabolic Methodology: Breaking Down to Build Up</a></h3>
+<p>A deep dive into our four-phase framework for transforming complex operations into lean, high-performance systems.</p>
+<a href="#blog/catabolic-methodology" class="read-more">Read more →</a>
+</div>
+<div class="blog-card">
+<div class="date">March 17, 2026</div>
+<h3><a href="#blog/agents-vs-integrations">AI Agents vs. Traditional Integrations: When to Use Which</a></h3>
+<p>A practical framework for deciding when a simple Zapier flow is enough and when you need something smarter.</p>
+<a href="#blog/agents-vs-integrations" class="read-more">Read more →</a>
+</div>
+</div>
+</div>
+</section>`;
+
+/* BLOG POST 1 */
+pages['blog/ai-small-business-2026'] = `
+<section class="section">
+<div class="container">
+<article class="blog-post">
+<a href="#blog" class="back-link">← Back to Blog</a>
+<div class="post-date">April 28, 2026</div>
+<h1>AI for Small Business in 2026: What Actually Works</h1>
+<p>The AI landscape has shifted dramatically in the past year. While enterprise companies pour millions into custom models and proprietary training data, small businesses are quietly extracting enormous value from a much simpler playbook. Here's what's actually moving the needle for companies under 50 employees.</p>
+
+<h2>The Three AI Wins That Matter</h2>
+<p>After working with dozens of small businesses on their automation strategies, three categories of AI adoption consistently deliver measurable ROI:</p>
+<ul>
+<li><strong>Customer communication automation:</strong> AI-powered email drafting, chatbots for common support queries, and intelligent routing that gets the right message to the right person without a human in the loop.</li>
+<li><strong>Document and data processing:</strong> Invoice extraction, contract summarization, and automatic data entry from unstructured sources. This alone saves most businesses 5–10 hours per week.</li>
+<li><strong>Decision support:</strong> Using AI to surface patterns in sales data, flag anomalies in expenses, or generate weekly operational summaries that would take hours to compile manually.</li>
+</ul>
+
+<h2>What Doesn't Work (Yet)</h2>
+<p>The hype cycle wants you to believe every business needs a custom AI agent handling complex multi-step workflows autonomously. For most small businesses, that's premature. The technology is impressive in demos but fragile in production — especially when you don't have an engineering team to maintain it.</p>
+
+<blockquote>The best AI strategy for a small business in 2026 is boring: automate the repetitive, augment the complex, and keep a human in the loop for anything that touches your customers directly.</blockquote>
+
+<h2>A Practical Starting Point</h2>
+<p>If you're not sure where to start, try this: track every task your team does for one week that involves copying data from one system to another. That's your automation backlog. Start with the highest-volume, lowest-risk items and work up from there.</p>
+<p>The companies getting the most from AI aren't the ones with the fanciest tools — they're the ones who simplified their operations first, then layered on intelligent automation where it matters most.</p>
+</article>
+</div>
+</section>`;
+
+/* BLOG POST 2 */
+pages['blog/strategic-simplification'] = `
+<section class="section">
+<div class="container">
+<article class="blog-post">
+<a href="#blog" class="back-link">← Back to Blog</a>
+<div class="post-date">April 14, 2026</div>
+<h1>Strategic Simplification: Why Less Really Is More</h1>
+<p>Every growing business faces the same invisible tax: complexity. It creeps in one "quick fix" at a time — a new tool here, an extra approval step there, a spreadsheet that becomes mission-critical without anyone noticing. Before you know it, your team spends more time managing the machine than doing the work that drives revenue.</p>
+
+<h2>The Complexity Trap</h2>
+<p>Complexity isn't inherently bad. Some of it is necessary — regulatory compliance, multi-channel fulfillment, enterprise sales cycles. The problem is unnecessary complexity: the kind that accumulates through inertia, fear of change, and the sunk-cost fallacy of tools and processes that no longer serve you.</p>
+<p>Here's a simple diagnostic: ask three people on your team to describe the same process. If you get three different answers, you have a complexity problem.</p>
+
+<h2>Simplification as Competitive Advantage</h2>
+<p>The leanest companies don't just operate more efficiently — they move faster. When your operations are simple and well-documented, you can:</p>
+<ul>
+<li>Onboard new hires in days instead of months</li>
+<li>Pivot strategies without rewiring twelve systems</li>
+<li>Spot problems immediately instead of discovering them in quarterly reviews</li>
+<li>Scale without proportionally scaling headcount</li>
+</ul>
+
+<blockquote>Simplicity isn't about doing less work. It's about removing the work that doesn't create value so you can focus everything on the work that does.</blockquote>
+
+<h2>Where to Start</h2>
+<p>You don't need a massive transformation initiative. Start with one process that frustrates your team. Map every step. Ask "why?" at each one. You'll be surprised how many steps exist because "that's how we've always done it" — and how many can be eliminated, combined, or automated.</p>
+<p>The goal isn't perfection. It's momentum. One simplified process creates appetite for the next, and before long, simplification becomes part of your operating culture.</p>
+</article>
+</div>
+</section>`;
+
+/* BLOG POST 3 */
+pages['blog/catabolic-methodology'] = `
+<section class="section">
+<div class="container">
+<article class="blog-post">
+<a href="#blog" class="back-link">← Back to Blog</a>
+<div class="post-date">March 31, 2026</div>
+<h1>Inside the Catabolic Methodology: Breaking Down to Build Up</h1>
+<p>The name "Catabolic" isn't random. In biology, catabolism is the set of metabolic pathways that break down complex molecules into simpler ones, releasing energy in the process. It's how your body turns food into fuel. Our methodology does the same thing for business operations.</p>
+
+<h2>Why "Breaking Down" Comes First</h2>
+<p>Most operations consultants start with a solution: implement this tool, adopt this framework, reorganize into squads. We start differently. Before we can build something better, we need to understand — really understand — what exists today and why it exists.</p>
+<p>That means mapping processes as they actually happen (not as the documentation says they should), interviewing the people who do the work (not just the managers who designed it), and quantifying the real cost of every handoff, approval, and workaround.</p>
+
+<h2>The Four Phases in Practice</h2>
+<p>Our methodology has four phases — Diagnose, Decompose, Rebuild, and Sustain — but in practice, they're not rigid gates. They overlap and iterate. A discovery in the Decompose phase might send us back to Diagnose a specific area more deeply. A Rebuild sprint might reveal a new simplification opportunity we hadn't seen.</p>
+<p>The key is maintaining the discipline of the framework while staying flexible in its application. Every business is different, and cookie-cutter approaches produce cookie-cutter results.</p>
+
+<h2>What Makes This Different</h2>
+<p>Three things set the Catabolic Methodology apart from typical consulting engagements:</p>
+<ol>
+<li><strong>We prioritize removal over addition.</strong> Our first instinct is always to ask "can we eliminate this?" before "how can we improve this?"</li>
+<li><strong>We measure complexity directly.</strong> We've developed a Complexity Cost framework that puts a dollar figure on operational overhead — making the ROI of simplification concrete and trackable.</li>
+<li><strong>We build sustainability in from day one.</strong> The Sustain phase isn't an afterthought. We design feedback loops and review rituals that keep operations lean long after the engagement ends.</li>
+</ol>
+
+<blockquote>The goal isn't to make your business simpler for simplicity's sake. It's to free up the energy — the time, money, and attention — that complexity was consuming, so you can redirect it toward growth.</blockquote>
+</article>
+</div>
+</section>`;
+
+/* BLOG POST 4 */
+pages['blog/agents-vs-integrations'] = `
+<section class="section">
+<div class="container">
+<article class="blog-post">
+<a href="#blog" class="back-link">← Back to Blog</a>
+<div class="post-date">March 17, 2026</div>
+<h1>AI Agents vs. Traditional Integrations: When to Use Which</h1>
+<p>The automation landscape now has two distinct tiers: traditional integrations (think Zapier, Make, native API connections) and AI agents (autonomous systems that can reason, decide, and act across multiple tools). Both have their place — but choosing the wrong one for a given problem wastes time and money.</p>
+
+<h2>Traditional Integrations: The Workhorse</h2>
+<p>Traditional integrations excel when the logic is deterministic: "When X happens, do Y." They're reliable, predictable, easy to debug, and cheap to run. For most small business automation needs, they're the right answer.</p>
+<p>Use traditional integrations when:</p>
+<ul>
+<li>The trigger and action are clearly defined</li>
+<li>The data transformation is straightforward</li>
+<li>You need 99.9% reliability</li>
+<li>The workflow doesn't require judgment or interpretation</li>
+</ul>
+
+<h2>AI Agents: The Specialist</h2>
+<p>AI agents shine when the task requires interpretation, flexibility, or multi-step reasoning. They can handle ambiguous inputs, make contextual decisions, and adapt to variations that would break a rigid integration.</p>
+<p>Use AI agents when:</p>
+<ul>
+<li>Inputs are unstructured (emails, documents, conversations)</li>
+<li>The task requires judgment ("Is this email a complaint or a feature request?")</li>
+<li>The workflow has branching logic that would be impractical to hard-code</li>
+<li>You need natural language interaction with systems</li>
+</ul>
+
+<h2>The Hybrid Approach</h2>
+<p>The smartest implementations we've seen use both. Traditional integrations handle the predictable, high-volume backbone of operations. AI agents handle the exceptions, the edge cases, and the tasks that require human-like understanding.</p>
+
+<blockquote>Don't use an AI agent to move a row from one spreadsheet to another. And don't use a Zapier flow to interpret customer sentiment from support tickets. Match the tool to the task.</blockquote>
+
+<h2>A Decision Framework</h2>
+<p>Before automating any task, ask three questions:</p>
+<ol>
+<li><strong>Is the input structured or unstructured?</strong> Structured → integration. Unstructured → agent.</li>
+<li><strong>Does the task require judgment?</strong> No → integration. Yes → agent.</li>
+<li><strong>How critical is reliability?</strong> Mission-critical → integration (with agent as fallback). Nice-to-have → agent is fine.</li>
+</ol>
+<p>The goal isn't to use the most advanced technology — it's to use the right technology for each specific job. Sometimes that's a simple webhook. Sometimes it's an AI agent. Usually, it's a thoughtful combination of both.</p>
+</article>
+</div>
+</section>`;
+
+/* ===== ROUTER ===== */
+const pageTitles = {
+  'home': 'Catabolic Solutions — Strategic Operations Consulting',
+  'services': 'Services — Catabolic Solutions',
+  'methodology': 'Methodology — Catabolic Solutions',
+  'case-studies': 'Case Studies — Catabolic Solutions',
+  'contact': 'Contact — Catabolic Solutions',
+  'blog': 'Blog — Catabolic Solutions',
+  'blog/ai-small-business-2026': 'AI for Small Business in 2026 — Catabolic Solutions',
+  'blog/strategic-simplification': 'Strategic Simplification — Catabolic Solutions',
+  'blog/catabolic-methodology': 'Inside the Catabolic Methodology — Catabolic Solutions',
+  'blog/agents-vs-integrations': 'AI Agents vs. Traditional Integrations — Catabolic Solutions'
+};
+
+function getRoute() {
+  var h = window.location.hash.replace('#','');
+  if (!h) h = 'home';
+  return h;
+}
+
+function render() {
+  var route = getRoute();
+  var app = document.getElementById('app');
+  var html = pages[route];
+  if (!html) { html = pages['home']; route = 'home'; }
+  app.innerHTML = html;
+  document.title = pageTitles[route] || 'Catabolic Solutions';
+  window.scrollTo(0,0);
+  updateNav(route);
+  closeMobileNav();
+  if (route === 'contact') bindContactForm();
+}
+
+function updateNav(route) {
+  var base = route.split('/')[0];
+  document.querySelectorAll('[data-route]').forEach(function(link) {
+    var r = link.getAttribute('data-route');
+    if (r === base || (r === 'blog' && route.startsWith('blog'))) {
+      link.classList.add('active');
+    } else {
+      link.classList.remove('active');
+    }
+  });
+}
+
+function closeMobileNav() {
+  document.getElementById('mobile-nav').classList.remove('open');
+}
+
+function bindContactForm() {
+  var form = document.getElementById('contact-form');
+  if (!form) return;
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    form.reset();
+    document.getElementById('form-success').classList.add('show');
+    setTimeout(function(){ document.getElementById('form-success').classList.remove('show'); }, 5000);
+  });
+}
+
+/* Event listeners */
+window.addEventListener('hashchange', render);
+window.addEventListener('DOMContentLoaded', render);
+
+/* Hamburger */
+document.getElementById('hamburger-btn').addEventListener('click', function() {
+  document.getElementById('mobile-nav').classList.toggle('open');
+});
+
+/* Mobile nav links close menu */
+document.querySelectorAll('#mobile-nav a').forEach(function(link) {
+  link.addEventListener('click', closeMobileNav);
+});
+
+/* Logo click */
+document.querySelectorAll('[data-nav="home"]').forEach(function(el) {
+  el.addEventListener('click', function(e) {
+    e.preventDefault();
+    window.location.hash = '#home';
+  });
+});
+</script>
+</body>
+</html>

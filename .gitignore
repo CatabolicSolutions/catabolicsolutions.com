@@ -1,0 +1,15 @@
+node_modules/
+.DS_Store
+*.log
+.env
+src/
+build.js
+DEPLOY.md
+MANIFEST.txt
+public/blog/
+public/case-studies.html
+public/contact.html
+public/favicon.ico
+public/methodology.html
+public/services.html
+public/styles.css
