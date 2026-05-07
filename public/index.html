@@ -6,16 +6,16 @@
 <title>Catabolic Solutions</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{--navy:#0f1b2d;--navy-mid:#1a2b45;--slate:#2c3e5a;--sky:#3b82f6;--sky-dark:#2563eb;--teal:#14b8a6;--white:#ffffff;--off-white:#f8fafc;--gray-100:#f1f5f9;--gray-200:#e2e8f0;--gray-300:#cbd5e1;--gray-500:#64748b;--gray-700:#334155;--gray-900:#0f172a;--font-sans:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;--font-display:'Playfair Display',Georgia,serif;--max-w:1140px;--radius:8px;--shadow-sm:0 1px 3px rgba(0,0,0,.08);--shadow-md:0 4px 16px rgba(0,0,0,.10);--shadow-lg:0 8px 30px rgba(0,0,0,.12);--transition:.25s ease}
+:root{--midnight:#0f1923;--steel-blue:#2d4a5e;--copper:#c8793d;--copper-dark:#b06830;--slate:#94a3b8;--near-black:#1e293b;--snow:#f8f9fa;--gray-100:#f1f5f9;--gray-200:#e2e8f0;--gray-300:#cbd5e1;--white:#ffffff;--font-sans:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;--font-display:'Inter','Helvetica Neue',Arial,sans-serif;--max-w:1140px;--radius:8px;--shadow-sm:0 1px 3px rgba(0,0,0,.08);--shadow-md:0 4px 16px rgba(0,0,0,.10);--shadow-lg:0 8px 30px rgba(0,0,0,.12);--transition:.25s ease}
 html{scroll-behavior:smooth}
-body{font-family:var(--font-sans);color:var(--gray-700);line-height:1.7;background:var(--white)}
+body{font-family:var(--font-sans);color:var(--near-black);line-height:1.7;background:var(--white)}
 img{max-width:100%;display:block}
-a{color:var(--sky-dark);text-decoration:none;transition:color var(--transition)}
-a:hover{color:var(--teal)}
-h1,h2,h3,h4{font-family:var(--font-display);color:var(--navy);line-height:1.25;font-weight:700}
+a{color:var(--copper-dark);text-decoration:none;transition:color var(--transition)}
+a:hover{color:var(--copper)}
+h1,h2,h3,h4{font-family:var(--font-display);color:var(--midnight);line-height:1.25;font-weight:700}
 h1{font-size:clamp(2rem,5vw,3.25rem)}
 h2{font-size:clamp(1.6rem,3.5vw,2.4rem)}
 h3{font-size:1.35rem}
@@ -23,34 +23,34 @@ h4{font-size:1.1rem}
 p+p{margin-top:1rem}
 .container{width:90%;max-width:var(--max-w);margin:0 auto}
 .section{padding:5rem 0}
-.section--alt{background:var(--off-white)}
+.section--alt{background:var(--snow)}
 
 /* Header */
-.site-header{position:sticky;top:0;z-index:100;background:rgba(15,27,45,.97);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);height:72px;display:flex;align-items:center}
+.site-header{position:sticky;top:0;z-index:100;background:rgba(15,25,35,.97);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);height:72px;display:flex;align-items:center}
 .header-inner{display:flex;align-items:center;justify-content:space-between;width:90%;max-width:var(--max-w);margin:0 auto}
 .logo{font-family:var(--font-display);font-size:1.35rem;font-weight:700;color:var(--white);cursor:pointer}
-.logo span{color:var(--teal)}
+.logo span{color:var(--copper)}
 .nav-desktop{display:flex;gap:1.75rem;list-style:none}
 .nav-desktop a{color:var(--gray-300);font-size:.9rem;font-weight:500;padding:.35rem 0;border-bottom:2px solid transparent;transition:color var(--transition),border-color var(--transition)}
 .nav-desktop a:hover{color:var(--white)}
-.nav-desktop a.active{color:var(--white);border-bottom-color:var(--teal)}
+.nav-desktop a.active{color:var(--white);border-bottom-color:var(--copper)}
 .hamburger{display:none;background:none;border:none;color:var(--white);font-size:1.6rem;cursor:pointer;padding:.25rem}
-.mobile-nav{display:none;position:fixed;top:72px;left:0;right:0;bottom:0;background:rgba(15,27,45,.98);z-index:99;flex-direction:column;padding:2rem;gap:.5rem}
+.mobile-nav{display:none;position:fixed;top:72px;left:0;right:0;bottom:0;background:rgba(15,25,35,.98);z-index:99;flex-direction:column;padding:2rem;gap:.5rem}
 .mobile-nav.open{display:flex}
-.mobile-nav a{color:var(--gray-300);font-size:1.1rem;font-weight:500;padding:.75rem 0;border-bottom:1px solid rgba(255,255,255,.06);transition:color var(--transition)}
+.mobile-nav a{color:var(--gray-300);font-size:1.1rem;font-weight:500;padding:.75rem 0;border-bottom:1px solid rgba(255,255,255,.08);transition:color var(--transition)}
 .mobile-nav a:hover,.mobile-nav a.active{color:var(--white)}
 
 /* Hero */
-.hero{background:linear-gradient(165deg,#0f1b2d 0%,#1a2b45 60%,#2c3e5a 100%);padding:6rem 0 5rem;text-align:center;position:relative;overflow:hidden}
-.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 80% 20%,rgba(59,130,246,.12) 0%,transparent 60%);pointer-events:none}
+.hero{background:linear-gradient(165deg,#0f1923 0%,#1a2b45 60%,#2d4a5e 100%);padding:6rem 0 5rem;text-align:center;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 80% 20%,rgba(200,121,61,.12) 0%,transparent 60%);pointer-events:none}
 .hero .container{position:relative;z-index:1}
 .hero h1{color:var(--white);margin-bottom:1.25rem}
 .hero p{color:var(--gray-300);font-size:1.15rem;max-width:720px;margin:0 auto 2rem}
 .hero--short{padding:4rem 0 3.5rem}
 
 /* Buttons */
-.btn--primary{display:inline-block;background:var(--sky);color:var(--white);font-weight:600;padding:.75rem 1.75rem;border-radius:var(--radius);border:none;font-size:.95rem;cursor:pointer;transition:background var(--transition),transform var(--transition),box-shadow var(--transition);font-family:var(--font-sans)}
-.btn--primary:hover{background:var(--sky-dark);transform:translateY(-1px);box-shadow:var(--shadow-md);color:var(--white)}
+.btn--primary{display:inline-block;background:var(--copper);color:var(--white);font-weight:600;padding:.75rem 1.75rem;border-radius:var(--radius);border:none;font-size:.95rem;cursor:pointer;transition:background var(--transition),transform var(--transition),box-shadow var(--transition);font-family:var(--font-sans)}
+.btn--primary:hover{background:var(--copper-dark);transform:translateY(-1px);box-shadow:var(--shadow-md);color:var(--white)}
 .btn--outline{display:inline-block;background:transparent;color:var(--gray-300);font-weight:600;padding:.75rem 1.75rem;border-radius:var(--radius);border:2px solid var(--gray-300);font-size:.95rem;cursor:pointer;transition:border-color var(--transition),color var(--transition),transform var(--transition);font-family:var(--font-sans)}
 .btn--outline:hover{border-color:var(--white);color:var(--white);transform:translateY(-1px)}
 .hero-buttons{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
@@ -75,24 +75,24 @@ p+p{margin-top:1rem}
 .steps{max-width:700px;margin:0 auto;counter-reset:step-counter;position:relative}
 .step{position:relative;padding-left:4.5rem;padding-bottom:2.5rem;border-left:2px solid var(--gray-200);margin-left:1rem}
 .step:last-child{border-left-color:transparent;padding-bottom:0}
-.step::before{counter-increment:step-counter;content:counter(step-counter);position:absolute;left:-1rem;top:0;width:2rem;height:2rem;background:var(--sky);color:var(--white);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.85rem;font-weight:700;font-family:var(--font-sans);line-height:1}
-.step h3{margin-bottom:.5rem;color:var(--navy)}
+.step::before{counter-increment:step-counter;content:counter(step-counter);position:absolute;left:-1rem;top:0;width:2rem;height:2rem;background:var(--copper);color:var(--white);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.85rem;font-weight:700;font-family:var(--font-sans);line-height:1}
+.step h3{margin-bottom:.5rem;color:var(--midnight)}
 .step p{color:var(--gray-500);font-size:.95rem}
 
 /* CTA Banner */
-.cta-banner{background:linear-gradient(135deg,var(--navy) 0%,var(--slate) 100%);color:var(--white);padding:4rem 2rem;text-align:center}
+.cta-banner{background:linear-gradient(135deg,var(--midnight) 0%,var(--slate) 100%);color:var(--white);padding:4rem 2rem;text-align:center}
 .cta-banner h2{color:var(--white);margin-bottom:.75rem}
 .cta-banner p{color:var(--gray-300);margin-bottom:1.75rem;font-size:1.05rem;max-width:600px;margin-left:auto;margin-right:auto}
 
 /* Case study cards */
 .case-card{background:var(--white);border:1px solid var(--gray-200);border-radius:var(--radius);padding:2rem;transition:box-shadow var(--transition),transform var(--transition)}
 .case-card:hover{box-shadow:var(--shadow-md);transform:translateY(-3px)}
-.badge{display:inline-block;background:var(--sky);color:var(--white);font-size:.72rem;font-weight:600;text-transform:uppercase;letter-spacing:.04em;padding:.3rem .75rem;border-radius:100px;margin-bottom:1rem}
+.badge{display:inline-block;background:var(--copper);color:var(--white);font-size:.72rem;font-weight:600;text-transform:uppercase;letter-spacing:.04em;padding:.3rem .75rem;border-radius:100px;margin-bottom:1rem}
 .case-card h3{margin-bottom:.75rem}
 .case-card>p{color:var(--gray-500);font-size:.95rem}
 .stats-row{display:flex;border-top:1px solid var(--gray-200);margin-top:1.5rem;padding-top:1.25rem;gap:1rem}
 .stat{flex:1;text-align:center}
-.stat-value{font-family:var(--font-display);font-size:1.3rem;color:var(--navy);font-weight:700}
+.stat-value{font-family:var(--font-display);font-size:1.3rem;color:var(--midnight);font-weight:700}
 .stat-label{font-size:.78rem;color:var(--gray-500);margin-top:.2rem}
 
 /* Contact form */
@@ -101,16 +101,16 @@ p+p{margin-top:1rem}
 .contact-info p{color:var(--gray-500);font-size:.95rem}
 .contact-info ul{list-style:none;margin:1.5rem 0}
 .contact-info ul li{padding:.5rem 0;color:var(--gray-500);font-size:.95rem;display:flex;gap:.5rem}
-.contact-info ul li strong{color:var(--navy);min-width:90px}
+.contact-info ul li strong{color:var(--midnight);min-width:90px}
 .what-expect{margin-top:2rem}
 .what-expect ol{padding-left:1.25rem;color:var(--gray-500);font-size:.95rem;margin-top:.75rem}
 .what-expect ol li{margin-bottom:.5rem}
 .form-group{margin-bottom:1.25rem}
-.form-group label{display:block;font-weight:600;font-size:.9rem;color:var(--navy);margin-bottom:.4rem}
-.form-group input,.form-group select,.form-group textarea{width:100%;padding:.7rem .9rem;border:1px solid var(--gray-200);border-radius:var(--radius);font-family:var(--font-sans);font-size:.95rem;color:var(--gray-700);background:var(--white);transition:border-color var(--transition)}
-.form-group input:focus,.form-group select:focus,.form-group textarea:focus{outline:none;border-color:var(--sky)}
+.form-group label{display:block;font-weight:600;font-size:.9rem;color:var(--midnight);margin-bottom:.4rem}
+.form-group input,.form-group select,.form-group textarea{width:100%;padding:.7rem .9rem;border:1px solid var(--gray-200);border-radius:var(--radius);font-family:var(--font-sans);font-size:.95rem;color:var(--near-black);background:var(--white);transition:border-color var(--transition)}
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus{outline:none;border-color:var(--copper)}
 .form-group textarea{min-height:120px;resize:vertical}
-.form-success{display:none;background:rgba(20,184,166,.08);border:1px solid var(--teal);border-radius:var(--radius);padding:1.25rem;color:var(--teal);font-weight:600;text-align:center;margin-top:1rem}
+.form-success{display:none;background:rgba(200,121,61,.10);border:1px solid var(--copper);border-radius:var(--radius);padding:1.25rem;color:var(--copper);font-weight:600;text-align:center;margin-top:1rem}
 .form-success.show{display:block}
 
 /* Blog cards */
@@ -119,28 +119,28 @@ p+p{margin-top:1rem}
 .blog-card:hover{box-shadow:var(--shadow-md);transform:translateY(-3px)}
 .blog-card .date{font-size:.82rem;color:var(--gray-500);margin-bottom:.6rem}
 .blog-card h3{margin-bottom:.6rem;font-size:1.2rem}
-.blog-card h3 a{color:var(--navy);transition:color var(--transition)}
-.blog-card h3 a:hover{color:var(--sky-dark)}
+.blog-card h3 a{color:var(--midnight);transition:color var(--transition)}
+.blog-card h3 a:hover{color:var(--copper-dark)}
 .blog-card p{color:var(--gray-500);font-size:.93rem;margin-bottom:1rem}
-.blog-card .read-more{font-size:.9rem;font-weight:600;color:var(--sky-dark)}
-.blog-card .read-more:hover{color:var(--teal)}
+.blog-card .read-more{font-size:.9rem;font-weight:600;color:var(--copper-dark)}
+.blog-card .read-more:hover{color:var(--copper)}
 
 /* Blog post */
 .blog-post{max-width:740px;margin:0 auto;padding:3rem 0 4rem}
-.blog-post .back-link{display:inline-block;margin-bottom:1.5rem;font-size:.9rem;font-weight:500;color:var(--sky-dark)}
-.blog-post .back-link:hover{color:var(--teal)}
+.blog-post .back-link{display:inline-block;margin-bottom:1.5rem;font-size:.9rem;font-weight:500;color:var(--copper-dark)}
+.blog-post .back-link:hover{color:var(--copper)}
 .blog-post .post-date{font-size:.88rem;color:var(--gray-500);margin-bottom:.75rem}
 .blog-post h1{margin-bottom:1.75rem;font-size:clamp(1.75rem,4vw,2.5rem)}
 .blog-post h2{margin-top:2.25rem;margin-bottom:.75rem;font-size:clamp(1.3rem,3vw,1.7rem)}
-.blog-post p{color:var(--gray-700);font-size:1.02rem;line-height:1.8}
-.blog-post ul{padding-left:1.5rem;margin:.75rem 0;color:var(--gray-700);font-size:1rem;line-height:1.8}
+.blog-post p{color:var(--near-black);font-size:1.02rem;line-height:1.8}
+.blog-post ul{padding-left:1.5rem;margin:.75rem 0;color:var(--near-black);font-size:1rem;line-height:1.8}
 .blog-post ul li{margin-bottom:.35rem}
-.blog-post ol{padding-left:1.5rem;margin:.75rem 0;color:var(--gray-700);font-size:1rem;line-height:1.8}
+.blog-post ol{padding-left:1.5rem;margin:.75rem 0;color:var(--near-black);font-size:1rem;line-height:1.8}
 .blog-post ol li{margin-bottom:.35rem}
-.blog-post blockquote{border-left:3px solid var(--teal);padding:.75rem 1.25rem;background:var(--off-white);border-radius:0 var(--radius) var(--radius) 0;margin:1.5rem 0;color:var(--gray-500);font-style:italic;font-size:1rem;line-height:1.7}
+.blog-post blockquote{border-left:3px solid var(--copper);padding:.75rem 1.25rem;background:var(--snow);border-radius:0 var(--radius) var(--radius) 0;margin:1.5rem 0;color:var(--gray-500);font-style:italic;font-size:1rem;line-height:1.7}
 
 /* Footer */
-.site-footer{background:var(--navy);color:var(--gray-300);padding:3rem 0 2rem}
+.site-footer{background:var(--midnight);color:var(--gray-300);padding:3rem 0 2rem}
 .footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:2.5rem}
 .footer-about .logo{margin-bottom:.75rem;display:inline-block}
 .footer-about p{font-size:.9rem;color:var(--gray-300);line-height:1.6;max-width:340px}
@@ -148,10 +148,10 @@ p+p{margin-top:1rem}
 .footer-links{list-style:none}
 .footer-links li{margin-bottom:.5rem}
 .footer-links a{color:var(--gray-300);font-size:.9rem;transition:color var(--transition)}
-.footer-links a:hover{color:var(--teal)}
+.footer-links a:hover{color:var(--copper)}
 .footer-contact p{font-size:.9rem;margin-bottom:.35rem}
 .footer-contact a{color:var(--gray-300)}
-.footer-contact a:hover{color:var(--teal)}
+.footer-contact a:hover{color:var(--copper)}
 .footer-bottom{border-top:1px solid rgba(255,255,255,.08);margin-top:2.5rem;padding-top:1.5rem;display:flex;justify-content:space-between;align-items:center;font-size:.82rem;color:var(--gray-500)}
 
 /* Responsive */
@@ -244,22 +244,22 @@ p+p{margin-top:1rem}
 const svgIcons = {};
 
 // 1. Process Optimization — three interconnected molecular nodes in triangle
-svgIcons.processOptimization = '<svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="20" cy="8" r="3" stroke="#14b8a6" stroke-width="1.5"/><circle cx="10" cy="28" r="3" stroke="#14b8a6" stroke-width="1.5"/><circle cx="30" cy="28" r="3" stroke="#14b8a6" stroke-width="1.5"/><path d="M17.5 10.5C15 14 12 22 12.5 25" stroke="#14b8a6" stroke-width="1.5" stroke-linecap="round"/><path d="M22.5 10.5C25 14 28 22 27.5 25" stroke="#14b8a6" stroke-width="1.5" stroke-linecap="round"/><path d="M13 29.5C16 31 24 31 27 29.5" stroke="#14b8a6" stroke-width="1.5" stroke-linecap="round"/></svg>';
+svgIcons.processOptimization = '<svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="20" cy="8" r="3" stroke="#c8793d" stroke-width="1.5"/><circle cx="10" cy="28" r="3" stroke="#c8793d" stroke-width="1.5"/><circle cx="30" cy="28" r="3" stroke="#c8793d" stroke-width="1.5"/><path d="M17.5 10.5C15 14 12 22 12.5 25" stroke="#c8793d" stroke-width="1.5" stroke-linecap="round"/><path d="M22.5 10.5C25 14 28 22 27.5 25" stroke="#c8793d" stroke-width="1.5" stroke-linecap="round"/><path d="M13 29.5C16 31 24 31 27 29.5" stroke="#c8793d" stroke-width="1.5" stroke-linecap="round"/></svg>';
 
 // 2. Intelligent Automation / Synapse — two nodes with dendrites and dashed connection
-svgIcons.synapse = '<svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="10" cy="20" r="4" stroke="#14b8a6" stroke-width="1.5"/><circle cx="30" cy="20" r="4" stroke="#14b8a6" stroke-width="1.5"/><line x1="14" y1="20" x2="26" y2="20" stroke="#14b8a6" stroke-width="1.5" stroke-dasharray="2 2"/><line x1="10" y1="16" x2="6" y2="10" stroke="#14b8a6" stroke-width="1.5" stroke-linecap="round"/><line x1="10" y1="16" x2="14" y2="10" stroke="#14b8a6" stroke-width="1.5" stroke-linecap="round"/><line x1="7" y1="22" x2="3" y2="26" stroke="#14b8a6" stroke-width="1.5" stroke-linecap="round"/><line x1="30" y1="16" x2="34" y2="10" stroke="#14b8a6" stroke-width="1.5" stroke-linecap="round"/><line x1="30" y1="16" x2="26" y2="10" stroke="#14b8a6" stroke-width="1.5" stroke-linecap="round"/><line x1="33" y1="22" x2="37" y2="26" stroke="#14b8a6" stroke-width="1.5" stroke-linecap="round"/></svg>';
+svgIcons.synapse = '<svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="10" cy="20" r="4" stroke="#c8793d" stroke-width="1.5"/><circle cx="30" cy="20" r="4" stroke="#c8793d" stroke-width="1.5"/><line x1="14" y1="20" x2="26" y2="20" stroke="#c8793d" stroke-width="1.5" stroke-dasharray="2 2"/><line x1="10" y1="16" x2="6" y2="10" stroke="#c8793d" stroke-width="1.5" stroke-linecap="round"/><line x1="10" y1="16" x2="14" y2="10" stroke="#c8793d" stroke-width="1.5" stroke-linecap="round"/><line x1="7" y1="22" x2="3" y2="26" stroke="#c8793d" stroke-width="1.5" stroke-linecap="round"/><line x1="30" y1="16" x2="34" y2="10" stroke="#c8793d" stroke-width="1.5" stroke-linecap="round"/><line x1="30" y1="16" x2="26" y2="10" stroke="#c8793d" stroke-width="1.5" stroke-linecap="round"/><line x1="33" y1="22" x2="37" y2="26" stroke="#c8793d" stroke-width="1.5" stroke-linecap="round"/></svg>';
 
 // 3. Technology Strategy (Home) — hexagonal molecular network
-svgIcons.hexNetwork = '<svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 5L33 12.5V27.5L20 35L7 27.5V12.5L20 5Z" stroke="#14b8a6" stroke-width="1.5" stroke-linejoin="round"/><circle cx="20" cy="5" r="2.5" stroke="#14b8a6" stroke-width="1.5"/><circle cx="33" cy="12.5" r="2.5" stroke="#14b8a6" stroke-width="1.5"/><circle cx="33" cy="27.5" r="2.5" stroke="#14b8a6" stroke-width="1.5"/><circle cx="20" cy="35" r="2.5" stroke="#14b8a6" stroke-width="1.5"/><circle cx="7" cy="27.5" r="2.5" stroke="#14b8a6" stroke-width="1.5"/><circle cx="7" cy="12.5" r="2.5" stroke="#14b8a6" stroke-width="1.5"/></svg>';
+svgIcons.hexNetwork = '<svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 5L33 12.5V27.5L20 35L7 27.5V12.5L20 5Z" stroke="#c8793d" stroke-width="1.5" stroke-linejoin="round"/><circle cx="20" cy="5" r="2.5" stroke="#c8793d" stroke-width="1.5"/><circle cx="33" cy="12.5" r="2.5" stroke="#c8793d" stroke-width="1.5"/><circle cx="33" cy="27.5" r="2.5" stroke="#c8793d" stroke-width="1.5"/><circle cx="20" cy="35" r="2.5" stroke="#c8793d" stroke-width="1.5"/><circle cx="7" cy="27.5" r="2.5" stroke="#c8793d" stroke-width="1.5"/><circle cx="7" cy="12.5" r="2.5" stroke="#c8793d" stroke-width="1.5"/></svg>';
 
 // 4. Operational Audit — circular lens with crosshair and diagnostic dots
-svgIcons.auditLens = '<svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="20" cy="20" r="14" stroke="#14b8a6" stroke-width="1.5"/><line x1="20" y1="10" x2="20" y2="30" stroke="#14b8a6" stroke-width="1" stroke-opacity="0.4"/><line x1="10" y1="20" x2="30" y2="20" stroke="#14b8a6" stroke-width="1" stroke-opacity="0.4"/><circle cx="15" cy="16" r="1.5" fill="#14b8a6"/><circle cx="24" cy="14" r="1" fill="#14b8a6"/><circle cx="22" cy="23" r="1.5" fill="#14b8a6"/><circle cx="14" cy="25" r="1" fill="#14b8a6"/></svg>';
+svgIcons.auditLens = '<svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="20" cy="20" r="14" stroke="#c8793d" stroke-width="1.5"/><line x1="20" y1="10" x2="20" y2="30" stroke="#c8793d" stroke-width="1" stroke-opacity="0.4"/><line x1="10" y1="20" x2="30" y2="20" stroke="#c8793d" stroke-width="1" stroke-opacity="0.4"/><circle cx="15" cy="16" r="1.5" fill="#c8793d"/><circle cx="24" cy="14" r="1" fill="#c8793d"/><circle cx="22" cy="23" r="1.5" fill="#c8793d"/><circle cx="14" cy="25" r="1" fill="#c8793d"/></svg>';
 
 // 5. Fractional Ops Leadership — organic growth curve with branch nodes
-svgIcons.growthCurve = '<svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 34C10 30 15 24 20 20C25 16 30 10 35 6" stroke="#14b8a6" stroke-width="1.5" stroke-linecap="round"/><circle cx="14" cy="26" r="2.5" stroke="#14b8a6" stroke-width="1.5"/><line x1="12" y1="24.5" x2="7" y2="19" stroke="#14b8a6" stroke-width="1.5" stroke-linecap="round"/><circle cx="22" cy="18" r="2.5" stroke="#14b8a6" stroke-width="1.5"/><line x1="24" y1="16.5" x2="28" y2="12" stroke="#14b8a6" stroke-width="1.5" stroke-linecap="round"/><circle cx="32" cy="9" r="2.5" stroke="#14b8a6" stroke-width="1.5"/><line x1="34" y1="7.5" x2="37" y2="4" stroke="#14b8a6" stroke-width="1.5" stroke-linecap="round"/></svg>';
+svgIcons.growthCurve = '<svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 34C10 30 15 24 20 20C25 16 30 10 35 6" stroke="#c8793d" stroke-width="1.5" stroke-linecap="round"/><circle cx="14" cy="26" r="2.5" stroke="#c8793d" stroke-width="1.5"/><line x1="12" y1="24.5" x2="7" y2="19" stroke="#c8793d" stroke-width="1.5" stroke-linecap="round"/><circle cx="22" cy="18" r="2.5" stroke="#c8793d" stroke-width="1.5"/><line x1="24" y1="16.5" x2="28" y2="12" stroke="#c8793d" stroke-width="1.5" stroke-linecap="round"/><circle cx="32" cy="9" r="2.5" stroke="#c8793d" stroke-width="1.5"/><line x1="34" y1="7.5" x2="37" y2="4" stroke="#c8793d" stroke-width="1.5" stroke-linecap="round"/></svg>';
 
 // 6. Technology Strategy Services — three converging pathways to central node
-svgIcons.converge = '<svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="20" cy="20" r="3.5" stroke="#14b8a6" stroke-width="1.5"/><line x1="5" y1="6" x2="17" y2="18" stroke="#14b8a6" stroke-width="1.5" stroke-linecap="round"/><circle cx="5" cy="6" r="2.5" stroke="#14b8a6" stroke-width="1.5"/><line x1="35" y1="6" x2="23" y2="18" stroke="#14b8a6" stroke-width="1.5" stroke-linecap="round"/><circle cx="35" cy="6" r="2.5" stroke="#14b8a6" stroke-width="1.5"/><line x1="20" y1="38" x2="20" y2="23.5" stroke="#14b8a6" stroke-width="1.5" stroke-linecap="round"/><circle cx="20" cy="38" r="2" stroke="#14b8a6" stroke-width="1.5"/></svg>';
+svgIcons.converge = '<svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="20" cy="20" r="3.5" stroke="#c8793d" stroke-width="1.5"/><line x1="5" y1="6" x2="17" y2="18" stroke="#c8793d" stroke-width="1.5" stroke-linecap="round"/><circle cx="5" cy="6" r="2.5" stroke="#c8793d" stroke-width="1.5"/><line x1="35" y1="6" x2="23" y2="18" stroke="#c8793d" stroke-width="1.5" stroke-linecap="round"/><circle cx="35" cy="6" r="2.5" stroke="#c8793d" stroke-width="1.5"/><line x1="20" y1="38" x2="20" y2="23.5" stroke="#c8793d" stroke-width="1.5" stroke-linecap="round"/><circle cx="20" cy="38" r="2" stroke="#c8793d" stroke-width="1.5"/></svg>';
 
 /* ===== TEMPLATES ===== */
 const ctaBanner = `
